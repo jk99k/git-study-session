@@ -46,3 +46,23 @@ GitHub 上でブランチを選択し、`main` ブランチへの Pull Request �
 
 Pull Request を作成すると自動でCIが実行されます。  
 「All checks have passed ✅」が表示されれば成功です！
+
+## 8. リポジトリ構成
+
+```
+git-study-session/
+├── .github/
+│   └── workflows/
+│       └── check-branch-name.yml  # CI設定 (Pull Request時に自動実行)
+├── students/                       # 生徒が自分のGoファイルを置くディレクトリ
+├── template.go                     # 生徒がコピーして使うテンプレート
+└── README.md                       # この手順書
+```
+
+### 各ファイルの役割
+
+- **`template.go`**: ハンズオンの出発点。`fmt.Println("YOUR_BRANCH_NAME")` の1行だけ書き換えて `students/` にコピーして使う。
+- **`students/`**: 全員のGoファイルが集まるディレクトリ。ファイル名はブランチ名と同じにする（例: `taro-yamada.go`）。
+- **`.github/workflows/check-branch-name.yml`**: Pull Requestが作成されると自動で以下の2点をチェックするCI。
+  1. `students/<ブランチ名>.go` が存在するか
+  2. そのファイルを実行した出力がブランチ名と一致するか

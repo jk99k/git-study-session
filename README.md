@@ -10,7 +10,7 @@ cd git-study-session
 
 ### 2. ブランチを作成
 ```bash
-git checkout -b <自分の名前（例: goura）>
+git checkout -b <好きな文字列（例: goura）>
 ```
 
 ### 3. テンプレートをコピー
@@ -62,7 +62,7 @@ git-study-session/
 ### 各ファイルの役割
 
 - **`template.go`**: ハンズオンの出発点。`fmt.Println("YOUR_BRANCH_NAME")` の1行だけ書き換えて `students/` にコピーして使う。
-- **`students/`**: 全員のGoファイルが集まるディレクトリ。ファイル名はブランチ名と同じにする（例: `taro-yamada.go`）。
+- **`students/`**: 全員のGoファイルが集まるディレクトリ。ファイル名はブランチ名と同じにする（例: `goura.go`）。
 - **`.github/workflows/check-branch-name.yml`**: Pull Requestが作成されると自動で以下の2点をチェックするCI。
   1. `students/<ブランチ名>.go` が存在するか
   2. そのファイルを実行した出力がブランチ名と一致するか

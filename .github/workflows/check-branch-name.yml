@@ -1,0 +1,38 @@
+name: Check Student Go Output
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-go-output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Go言語のセットアップ
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: ファイルの存在確認と出力チェック
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          FILE_PATH="students/${BRANCH_NAME}.go"
+
+          if [ ! -f "$FILE_PATH" ]; then
+            echo "❌ エラー: ${FILE_PATH} が見つかりません。ブランチ名とファイル名が一致しているか確認してください。"
+            exit 1
+          fi
+
+          OUTPUT=$(go run "$FILE_PATH")
+          echo "実行結果: $OUTPUT"
+
+          if [ "$OUTPUT" != "$BRANCH_NAME" ]; then
+            echo "❌ エラー: 出力（${OUTPUT}）がブランチ名（${BRANCH_NAME}）と一致しません。"
+            exit 1
+          fi
+
+          echo "✅ 成功: ファイル名と出力内容がブランチ名と完全に一致しました！"

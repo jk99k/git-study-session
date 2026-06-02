@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Go言語のセットアップ
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
+      - name: Go バージョン確認
+        run: go version
 
       - name: ファイルの存在確認と出力チェック
         run: |

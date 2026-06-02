@@ -4,7 +4,7 @@
 
 ### 1. リポジトリをクローン
 ```bash
-git clone [<リポジトリURL>](https://github.com/jk99k/git-study-session)
+git clone https://github.com/jk99k/git-study-session
 cd git-study-session
 ```
 
